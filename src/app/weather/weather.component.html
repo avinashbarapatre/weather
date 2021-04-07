@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="my-4">Enter the city name to check the weather details:</h3>
+      <form
+        [formGroup]="weatherSearchForm"
+        (ngSubmit)="getWeatherDetails(weatherSearchForm.value)"
+      >
+        <div class="form-group col-md-6">
+          <input
+            class="form-control"
+            type="text"
+            id="weatherLocation"
+            aria-describedby="weatherLocation"
+            placeholder="Please input a Location"
+            formControlName="location"        
+          />         
+        </div>
+
+        <div class="form-group col-md-6">          
+          <button type="submit" class="btn btn-primary btn-md">
+            Search for the weather
+          </button>
+        </div>
+                          
+      </form>
+    </div>
+  </div>
+  <h3>
+    City Name : {{ this.weatherData.city.name }}
+  </h3>
+    <div class="row">
+
+    
+    <div class="col-md-2 text-left">
+      <div class="my-4">Weather Details for :</div>
+      <p class="">
+        Minimum Temp:        
+      </p>
+      <p class="">
+        Maximum Temp: 
+      </p>
+      <p class="">
+        Current Temp: 
+      </p>
+      <p class="">
+        Humidity:
+        
+      </p>
+      <p class="">
+        Feels like:
+       
+      </p>
+      <p class="">
+        Sea Level: 
+      </p>
+      <p class="">
+        Weather: 
+      </p>
+      <p class="">
+        Wind: 
+      </p>
+    </div>
+    <div class="col-md-2" *ngFor="let item of this.weatherData?.list.slice(0, 5);">
+      <div class="text-center my-4"> {{ item.dt | date : "M/d/yy h:mm:ss" }}</div>
+      <p class="text-center">
+      
+        {{ item.main.temp_min }}.
+      </p>
+      <p class="text-center">
+       {{ item.main.temp_max }}
+      </p>
+      <p class="text-center">
+       {{ item.main.temp }}
+      </p>
+      <p class="text-center">
+        
+        {{ item.main.humidity }}
+      </p>
+      <p class="text-center">
+        
+        {{ item.main.feels_like }}
+      </p>
+      <p class="text-center">
+        {{ item.main.sea_level }}.
+      </p>
+      <p class="text-center">
+        {{ item.weather[0].description }}.
+      </p>
+      <p class="text-center">
+        Speed > {{ item.wind.deg }} <br/> Degree > {{ item.wind.speed }}
+      </p>
+    </div>
+    </div>
+  
+</div>
